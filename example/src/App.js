@@ -1,8 +1,11 @@
 import React from "react";
-import { useMyHook } from "react-countdown";
+import { useTimeDiff } from "react-countdown";
 
 const App = () => {
-  const example = useMyHook();
-  return <div>{example}</div>;
+  const example = useTimeDiff(+new Date(2021, 3, 17, 9, 0), {
+    startDate: +new Date(2021, 3, 16, 9, 0),
+    live: true,
+  });
+  return <div>{JSON.stringify(example)}</div>;
 };
 export default App;
