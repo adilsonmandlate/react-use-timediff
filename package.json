@@ -1,10 +1,10 @@
 {
-  "name": "react-countdown",
+  "name": "react-use-timediff",
   "version": "1.0.0",
   "description": "React hook to calculate diference between two dates",
   "author": "@adilsonmandlate",
   "license": "MIT",
-  "repository": "@adilsonmandlate/react-countdown",
+  "repository": "adilsonmandlate/react-use-timediff",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
