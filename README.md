@@ -13,16 +13,14 @@ npm install --save react-countdown
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
-import { useMyHook } from 'react-countdown'
+import { useMyHook } from "react-countdown";
 
 const Example = () => {
-  const example = useMyHook()
-  return (
-    <div>{example}</div>
-  )
-}
+  const example = useMyHook();
+  return <div>{example}</div>;
+};
 ```
 
 ## License
