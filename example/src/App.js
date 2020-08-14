@@ -1,5 +1,5 @@
 import React from "react";
-import { useTimeDiff } from "react-countdown";
+import { useTimeDiff } from "react-use-timediff";
 
 const App = () => {
   const example = useTimeDiff(+new Date(2021, 3, 17, 9, 0), {
