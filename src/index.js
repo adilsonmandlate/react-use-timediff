@@ -47,6 +47,10 @@ export const useTimeDiff = (eventDate, options = {}) => {
       }, interval);
     }
 
+    if (!eventDate) {
+      setTime(new Error("No date provided!"));
+    }
+
     return () => clearInterval(timer);
   }, [interval]);
 
