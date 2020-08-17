@@ -1,29 +1,40 @@
-import { useMyHook } from "./";
-import { renderHook, act } from "@testing-library/react-hooks";
+import { useTimeDiff } from "./";
+import { renderHook } from "@testing-library/react-hooks";
 
-// mock timer using jest
-jest.useFakeTimers();
+describe("useTimeDiff", () => {
+  it("should throw an error when not provided required param", () => {
+    const { result } = renderHook(() => useTimeDiff());
 
-describe("useMyHook", () => {
-  it("updates every second", () => {
-    const { result } = renderHook(() => useMyHook());
+    expect(result.current).toMatchObject(new Error("No date provided!"));
+  });
 
-    expect(result.current).toBe(0);
+  it("should correctly calculate time differences", () => {
+    const oldDate = new Date();
+    const newDate = new Date().setDate(oldDate.getDate() + 10);
 
-    // Fast-forward 1sec
-    act(() => {
-      jest.advanceTimersByTime(1000);
+    const { result } = renderHook(() =>
+      useTimeDiff(newDate, { startDate: oldDate })
+    );
+    expect(result.current).toMatchObject({
+      days: 10,
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
     });
+  });
 
-    // Check after total 1 sec
-    expect(result.current).toBe(1);
+  it("should return negative numbers to past days", () => {
+    const oldDate = new Date(2020, 0, 1);
+    const newDate = new Date(2020, 7, 17);
 
-    // Fast-forward 1 more sec
-    act(() => {
-      jest.advanceTimersByTime(1000);
+    const { result } = renderHook(() =>
+      useTimeDiff(oldDate, { startDate: newDate })
+    );
+    expect(result.current).toMatchObject({
+      days: -229,
+      hours: -0,
+      minutes: -0,
+      seconds: -0,
     });
-
-    // Check after total 2 sec
-    expect(result.current).toBe(2);
   });
 });
