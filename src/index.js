@@ -15,6 +15,7 @@ export const useTimeDiff = (eventDate, options = {}) => {
 
   const [time, setTime] = useState({
     years: 0,
+    months: 0,
     days: 0,
     hours: 0,
     minutes: 0,

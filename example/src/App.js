@@ -2,16 +2,16 @@ import React from "react";
 import { useTimeDiff } from "react-use-timediff";
 
 const App = () => {
-  const liveExample = useTimeDiff(+new Date(2020, 11, 31, 23, 59, 59), {
+  const liveExample = useTimeDiff(new Date(2020, 11, 31, 23, 59, 59), {
     live: true,
   });
 
-  const liveFiveSeconds = useTimeDiff(+new Date(2020, 11, 31, 23, 59, 59), {
+  const liveFiveSeconds = useTimeDiff(new Date(2020, 11, 31, 23, 59, 59), {
     live: true,
     interval: 5000,
   });
 
-  const staticDiff = useTimeDiff(+new Date(2020, 11, 31, 23, 59, 59));
+  const staticDiff = useTimeDiff(new Date(2020, 11, 31, 23, 59, 59));
 
   return (
     <div className="container">
@@ -21,6 +21,15 @@ const App = () => {
       <section>
         <h3 className="subTitle">Updates every second:</h3>
         <div>
+          <p>
+            <span className="number">{liveExample?.years}</span>
+            <span className="label">Years</span>
+          </p>
+          <p>
+            <span className="number">{liveExample?.months}</span>
+            <span className="label">Months</span>
+          </p>
+
           <p>
             <span className="number">{liveExample?.days}</span>
             <span className="label">Days</span>
@@ -48,6 +57,14 @@ const App = () => {
         <h3 className="subTitle">Updates every 5 seconds:</h3>
         <div>
           <p>
+            <span className="number">{liveFiveSeconds?.years}</span>
+            <span className="label">Years</span>
+          </p>
+          <p>
+            <span className="number">{liveFiveSeconds?.months}</span>
+            <span className="label">Months</span>
+          </p>
+          <p>
             <span className="number">{liveFiveSeconds?.days}</span>
             <span className="label">Days</span>
           </p>
@@ -73,6 +90,14 @@ const App = () => {
       <section>
         <h3 className="subTitle">Updates only on load:</h3>
         <div>
+          <p>
+            <span className="number">{staticDiff?.years}</span>
+            <span className="label">Years</span>
+          </p>
+          <p>
+            <span className="number">{staticDiff?.months}</span>
+            <span className="label">Months</span>
+          </p>
           <p>
             <span className="number">{staticDiff?.days}</span>
             <span className="label">Days</span>
