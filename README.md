@@ -26,7 +26,7 @@ import React, { Component } from "react";
 import { useTimeDiff } from "react-use-timediff";
 
 const Example = () => {
-  const date = (new Date(2020, 11, 31,23,59,59)).getTime();
+  const date = (new Date(2020, 11, 31,23,59,59));
 
   const time = useTimeDiff(date, {
     live: true
@@ -36,10 +36,12 @@ const Example = () => {
     <main>
       <h1>Remaing time to the end of the year: </h1>
       <section>
-        <span>Days: {time?.days}</span>
-        <span>Hours: {time?.hours}</span>
-        <span>Minutes: {time?.minutes}</span>
-        <span>Seconds: {time?.seconds}</span>
+        <span>Years: {time.years}</span>
+        <span>Months: {time.months}</span>
+        <span>Days: {time.days}</span>
+        <span>Hours: {time.hours}</span>
+        <span>Minutes: {time.minutes}</span>
+        <span>Seconds: {time.seconds}</span>
       </section>
     </main>;
   )
@@ -50,9 +52,9 @@ const Example = () => {
 
 ```js
 useTimeDiff(
-  eventDate: number,
+  eventDate: Date | number,
   options?: {
-    startDate?: number,
+    startDate?: Date | number,
     live?: boolean,
     interval?: number
   }
@@ -61,11 +63,11 @@ useTimeDiff(
 
 Required:
 
-- `eventDate`: The final date, in milliseconds, to make the calculation.
+- `eventDate`: The final date, a Date object or milliseconds, to make the calculation.
 
 Optional:
 
-- `startDate`: The initial date to make the calculations, in milliseconds. If `live` is true, this will not be used.
+- `startDate`: The initial date to make the calculations, a Date object or milliseconds. If `live` is true, this will not be used.
   Default: Date.now();
 
 - `live`: Whether it should update the time left, periodically, in the provided interval.
