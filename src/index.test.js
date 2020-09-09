@@ -8,33 +8,36 @@ describe("useTimeDiff", () => {
     expect(result.current).toMatchObject(new Error("No date provided!"));
   });
 
-  it("should correctly calculate time differences", () => {
-    const oldDate = new Date();
-    const newDate = new Date().setDate(oldDate.getDate() + 10);
+  it("should throw an error when the start date is greater than final date", () => {
+    const initialDate = new Date(2021, 0, 1);
+    const finalDate = new Date(2020, 0, 1);
 
     const { result } = renderHook(() =>
-      useTimeDiff(newDate, { startDate: oldDate })
+      useTimeDiff(finalDate, { startDate: initialDate })
     );
-    expect(result.current).toMatchObject({
-      days: 10,
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
-    });
+
+    expect(result.current).toMatchObject(
+      new Error(
+        "Cannot make the calculations. The start date is greater than the final date"
+      )
+    );
   });
 
-  it("should return negative numbers to past days", () => {
-    const oldDate = new Date(2020, 0, 1);
-    const newDate = new Date(2020, 7, 17);
+  it("should correctly calculate time differences", () => {
+    const initialDate = new Date(2020, 9, 21, 11, 5, 15);
+    const finalDate = new Date(2022, 8, 10, 11, 5, 10);
 
     const { result } = renderHook(() =>
-      useTimeDiff(oldDate, { startDate: newDate })
+      useTimeDiff(finalDate, { startDate: initialDate })
     );
+
     expect(result.current).toMatchObject({
-      days: -229,
-      hours: -0,
-      minutes: -0,
-      seconds: -0,
+      years: 1,
+      months: 10,
+      days: 19,
+      hours: 23,
+      minutes: 59,
+      seconds: 55,
     });
   });
 });
