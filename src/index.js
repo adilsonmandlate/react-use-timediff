@@ -13,14 +13,7 @@ export const useTimeDiff = (eventDate, options = {}) => {
   const finalDate = new Date(eventDate);
   const { interval = 1000, live = false } = options;
 
-  const [time, setTime] = useState({
-    years: 0,
-    months: 0,
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
+  const [time, setTime] = useState({});
 
   /**
    * Determine whether a year is leap year.
@@ -129,5 +122,3 @@ export const useTimeDiff = (eventDate, options = {}) => {
 
   return time;
 };
-
-export default useTimeDiff;
