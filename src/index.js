@@ -64,12 +64,6 @@ export const useTimeDiff = (eventDate, options = {}) => {
       31,
     ];
 
-    if (finalDate.getTime() < initialDate.getTime()) {
-      return new Error(
-        "Cannot make the calculations. The start date is greater than the final date"
-      );
-    }
-
     if (secondsDiff < 0) {
       secondsDiff += 60;
       minutesDiff = minutesDiff - 1;
@@ -120,6 +114,14 @@ export const useTimeDiff = (eventDate, options = {}) => {
 
     if (!eventDate) {
       setTime(new Error("No date provided!"));
+    }
+
+    if (finalDate.getTime() < initialDate.getTime()) {
+      setTime(
+        new Error(
+          "Cannot make the calculations. The start date is greater than the final date"
+        )
+      );
     }
 
     return () => clearInterval(timer);
