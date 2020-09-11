@@ -3,6 +3,7 @@ import commonjs from "rollup-plugin-commonjs";
 import external from "rollup-plugin-peer-deps-external";
 import resolve from "rollup-plugin-node-resolve";
 import url from "rollup-plugin-url";
+import { terser } from "rollup-plugin-terser";
 import cleanup from "rollup-plugin-cleanup";
 
 import pkg from "./package.json";
@@ -13,15 +14,16 @@ export default {
     {
       file: pkg.main,
       format: "cjs",
-      sourcemap: false,
+      compact: true,
     },
     {
       file: pkg.module,
       format: "es",
-      sourcemap: false,
+      compact: true,
     },
   ],
   plugins: [
+    terser(),
     external(),
     url({ exclude: ["**/*.svg"] }),
     babel({
